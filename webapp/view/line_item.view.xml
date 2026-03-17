@@ -1,0 +1,129 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+controllerName="sap.com.bedigix.approvectrfe.controller.line_item" 
+xmlns="sap.m" 
+xmlns:layout="sap.ui.layout" 
+xmlns:form="sap.ui.layout.form" 
+xmlns:core="sap.ui.core">
+ <Page showHeader="true" title="{i18n>detailPosition}{/elencoDettagliCo/item_no}" titleAlignment="Center" showFooter="false" showNavButton="true" navButtonPress="_onPageNavButtonPress">
+        <content>
+            <Label text="" design="Standard" width="auto" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+            <layout:VerticalLayout width="100%" visible="true">
+                <layout:content>
+                    <ObjectHeader intro="" title="{MaterialGroup}" icon="" number="{Quantity}" numberUnit="{Measure}" numberState="None" backgroundDesign="Transparent" condensed="false" visible="true">
+                        <attributes>
+                            <ObjectAttribute text="{ItemCategory}" active="false" visible="true"/>
+                        </attributes>
+                        <statuses/>
+                        <markers/>
+                    </ObjectHeader>
+                </layout:content>
+            </layout:VerticalLayout>
+            <form:Form width="100%" editable="false" visible="true">
+                <form:title>
+                    <core:Title text="{i18n>form1}" level="Auto"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form11}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="false"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/material}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="false"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form12}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/mat_group} - {/elencoDettagliCo/desc_matgrp}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+            <form:Form width="100%" editable="false" visible="true">
+                <!--<form:title>
+                    <core:Title text="{i18n>form2}  {/elencoDettagliCo/del_date}" level="Auto"/>
+                </form:title>-->
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form21}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/plant}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form22}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/del_addr}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+            <List mode="SingleSelectMaster" width="100%" headerText="{i18n>form3}" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" items="{path:'/arrayDettagliNoteCo', templateShareable:true}">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <items>
+                    <StandardListItem  title="{doc_text}" description="{Author}" info="" infoState="None" type="Active" selected="false" visible="true"/>
+                </items>
+            </List>
+            <form:Form width="100%" editable="false" visible="true">
+                <form:title>
+                    <core:Title text="{i18n>form4}" level="Auto"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form41}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/cost_object}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="{i18n>form42}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="{/elencoDettagliCo/acct_ass_cat}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+        </content>
+    </Page>
+</mvc:View>

@@ -32,7 +32,7 @@
   "sap.ui": {
     "technology": "UI5",
     "icons": {
-      "icon": "",
+      "icon": "sap-icon://detail-view",
       "favIcon": "",
       "phone": "",
       "phone@2": "",
@@ -43,15 +43,17 @@
       "desktop": true,
       "tablet": true,
       "phone": true
-    }
+    },
+    "fullWidth": true
   },
   "sap.ui5": {
-    "flexEnabled": true,
+    "flexEnabled": false,
     "dependencies": {
       "minUI5Version": "1.145.0",
       "libs": {
         "sap.m": {},
-        "sap.ui.core": {}
+        "sap.ui.core": {},
+        "sap.ui.layout": {}
       }
     },
     "contentDensities": {
@@ -76,28 +78,75 @@
     "routing": {
       "config": {
         "routerClass": "sap.m.routing.Router",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "transition": "slide",
-        "type": "View",
         "viewType": "XML",
-        "path": "sap.com.bedigix.approvectrfe.view",
         "async": true,
-        "viewPath": "sap.com.bedigix.approvectrfe.view"
+        "viewPath": "sap.com.bedigix.approvectrfe.view",
+        "controlAggregation": "detailPages",
+        "controlId": "idAppControl",
+        "clearTarget": false,
+        "clearControlAggregation": false,
+        "bypassed": {
+          "target": [
+            "PurchaseOrderDetails",
+            "purchase_orders"
+          ]
+        }
       },
       "routes": [
         {
-          "name": "RouteView1",
-          "pattern": ":?query:",
+          "name": "purchase_orders",
+          "pattern": "purchase_orders",
           "target": [
-            "TargetView1"
+            "PurchaseOrderDetails",
+            "purchase_orders"
+          ]
+        },
+        {
+          "pattern": "purchase_orders/PurchaseOrderDetails/:context:",
+          "name": "PurchaseOrderDetails",
+          "target": [
+            "purchase_orders",
+            "PurchaseOrderDetails"
+          ]
+        },
+        {
+          "pattern": "purchase_orders/line_item/:context:",
+          "name": "line_item",
+          "target": [
+            "purchase_orders",
+            "line_item"
+          ]
+        },
+        {
+          "pattern": "",
+          "name": "default",
+          "target": [
+            "PurchaseOrderDetails",
+            "purchase_orders"
           ]
         }
       ],
       "targets": {
-        "TargetView1": {
-          "id": "View1",
-          "name": "View1"
+        "purchase_orders": {
+          "controlAggregation": "masterPages",
+          "viewName": "purchase_orders",
+          "viewId": "purchase_orders",
+          "viewLevel": 1,
+          "transition": "slide"
+        },
+        "PurchaseOrderDetails": {
+          "controlAggregation": "detailPages",
+          "viewName": "PurchaseOrderDetails",
+          "viewId": "PurchaseOrderDetails",
+          "viewLevel": 2,
+          "transition": "slide"
+        },
+        "line_item": {
+          "controlAggregation": "detailPages",
+          "viewName": "line_item",
+          "viewId": "line_item",
+          "viewLevel": 1,
+          "transition": "slide"
         }
       }
     },
@@ -106,7 +155,8 @@
       "type": "XML",
       "id": "App",
       "async": true
-    }
+    },
+    "autoPrefixId": true
   },
   "sap.cloud": {
     "public": true,

@@ -1,0 +1,234 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="sap.com.bedigix.approvectrfe.controller.PurchaseOrderDetails" xmlns="sap.m"
+	xmlns:layout="sap.ui.layout" xmlns:form="sap.ui.layout.form" xmlns:upload="sap.m.upload">
+	<Page showHeader="true" title="{i18n>titlePage}{/objTestataCo/doc_num}" titleAlignment="Center" showFooter="true" showNavButton="false">
+		<content>
+			<layout:VerticalLayout width="100%" visible="true">
+				<layout:content>
+					<!--<ObjectHeader intro="" title="{SupplierName}" icon="" number="{path: 'Value', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" numberUnit="{Currency}" numberState="None" titleActive="true" backgroundDesign="Translucent" condensed="false" visible="true" titlePress="_onObjectHeaderTitlePress">
+                        <attributes>
+                            <ObjectAttribute text="{CreatedByName}" active="true" visible="true" press="_onObjectAttributePress"/>
+                        </attributes>
+
+                    </ObjectHeader>-->
+					<ObjectHeader title="{/objTestataCo/vendor_name}" number="{path:'/objTestataCo/doc_value', formatter:'.applicaSeparatore'}"
+						numberUnit="{/objTestataCo/currency}" numberState="None" titleActive="false" backgroundDesign="Translucent" condensed="false" visible="true"
+						titlePress="_onObjectHeaderTitlePress">
+						<ObjectAttribute text="{i18n>list5} {/objTestataCo/purch_grp}" active="false" visible="true" press="_onObjectAttributePress"/>
+						<ObjectAttribute text="{i18n>list4} {/objTestataCo/name_user}" active="false" visible="true" press="_onObjectAttributePress"/>
+						<ObjectAttribute text="{i18n>list2} {/objTestataCo/start_date} {i18n>list3} {/objTestataCo/end_date}" active="false" visible="true"
+							press="_onObjectAttributePress"/>
+						<!--
+                        <attributes>
+                            <ObjectAttribute text="{/elencoTestataRda/doc_type}" active="true" visible="true" press="_onObjectAttributePress"/>
+                        </attributes>
+						-->
+					</ObjectHeader>
+				</layout:content>
+			</layout:VerticalLayout>
+			<IconTabBar expandable="true" expanded="true" applyContentPadding="false" backgroundDesign="Solid" upperCase="false" visible="true"
+				selectedKey="Ok">
+				<items>
+					<IconTabFilter icon="sap-icon://hint" iconColor="Neutral" text="" count="" design="Vertical" enabled="true" showAll="false"
+						textDirection="Inherit" visible="true">
+						<content>
+							<form:Form width="100%" editable="false" visible="true">
+								<form:title/>
+								<form:formContainers>
+									<form:FormContainer visible="true">
+										<form:formElements>
+											<form:FormElement visible="false">
+												<form:label>
+													<Label text="{i18n>information1}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:label>
+												<form:fields>
+													<Text text="{/objTestataCo/doc_num}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement visible="true">
+												<form:label>
+													<Label text="{i18n>information2}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:label>
+												<form:fields>
+													<Text text="{/objTestataCo/paym_terms}" width="auto" maxLines="2" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement visible="true">
+												<form:label>
+													<Label text="{i18n>information3}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:label>
+												<form:fields>
+													<Text text="{/objTestataCo/incoterms}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:fields>
+											</form:FormElement>
+											<form:FormElement visible="true">
+												<form:label>
+													<Label text="{i18n>information4}" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:label>
+												<form:fields>
+													<Text text="{/objTestataCo/company}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+												</form:fields>
+											</form:FormElement>
+										</form:formElements>
+										<form:title/>
+									</form:FormContainer>
+								</form:formContainers>
+								<form:layout>
+									<form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="4" columnsM="1" labelSpanM="4" labelSpanS="12"/>
+								</form:layout>
+							</form:Form>
+						</content>
+					</IconTabFilter>
+					<IconTabFilter icon="sap-icon://notes" iconColor="Default" text=""
+						count="{path: 'NbNotes', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" design="Vertical" showAll="false"
+						textDirection="Inherit" enabled="true" visible="true" iconDensityAware="false">
+						<content>
+							<List width="100%" growing="false" growingThreshold="20" growingScrollToLoad="false" backgroundDesign="Solid"
+								items="{path:'/header_text', templateShareable:true}">
+								<items>
+									<StandardListItem title="{doc_text}"/>
+								</items>
+							</List>
+						</content>
+					</IconTabFilter>
+					<!-- >>> U068 - Allegati -->
+					<IconTabFilter icon="sap-icon://document" iconColor="Default" text="" count="{path: '/lunghezza'}" design="Vertical" showAll="false" textDirection="Inherit"
+						enabled="true" visible="true" iconDensityAware="false">
+						<content>
+							<upload:UploadSet instantUpload="false" showIcons="true" uploadEnabled="false" terminationEnabled="false"
+								fileTypes="txt,doc,docx,xls,xlsx,csv,gif,png,jpeg,jpg" maxFileNameLength="30" maxFileSize="200" mediaTypes="text/plain,application/msword,image/gif,image/png,image/jpeg"
+								uploadUrl="" items="{path: '/items', templateShareable: false}">
+								<upload:items>
+									<upload:UploadSetItem fileName="{fileName}" mediaType="{mediaType}" url="{url}" thumbnailUrl="{thumbnailUrl}"
+										attributes="{path: 'attributes', templateShareable: false}" markers="{path: 'markers', templateShareable: false}"
+										statuses="{path: 'statuses', templateShareable: false}" uploadState="{uploadState}" enabledEdit="false" enabledRemove="false">
+										<upload:attributes>
+											<ObjectAttribute title="{title}" text="{text}" active="{active}"/>
+										</upload:attributes>
+										<upload:markers>
+											<ObjectMarker type="{type}" visibility="{visibility}"/>
+										</upload:markers>
+										<upload:statuses>
+											<ObjectStatus title="{title}" text="{text}" state="{state}" icon="{icon}" active="{active}"/>
+										</upload:statuses>
+									</upload:UploadSetItem>
+								</upload:items>
+							</upload:UploadSet>
+						</content>
+					</IconTabFilter>
+					<!-- <<< U068 - Allegati -->
+				</items>
+				<!--<content>
+                    <Text text="Tab Bar Content goes here ..." width="300px" maxLines="1" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                </content>-->
+			</IconTabBar>
+			<form:ResponsiveGridLayout columnsM="1" columnsL="2" emptySpanL="0" emptySpanM="0" emptySpanS="0" visible="true" labelSpanS="12"
+				labelSpanM="2" labelSpanL="4"/>
+			<Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="100" growingScrollToLoad="false"
+				class="sapUiResponsiveMargin" itemPress="_onTableItemPress" items="{path:'/elencoListaCo_item', templateShareable:true}">
+				<infoToolbar/>
+				<headerToolbar>
+					<Toolbar width="auto" height="46px" design="Transparent" visible="true" enabled="true">
+						<content>
+							<Text text="Items ({/elencoListaCo_item_length})" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit"
+								visible="true"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<columns>
+					<Column width="3rem" hAlign="Left" vAlign="Inherit" minScreenWidth="Phone" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position0}" width="3rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position0}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="auto" hAlign="Left" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position1}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position1}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="17rem" hAlign="Left" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position2}" width="17rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position2}"/>
+						</header>
+						<footer/>
+					</Column>
+					<!-- <Column width="21%" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+                        <header>
+                            <Text text="{i18n>position3}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>-->
+					<Column width="7rem" hAlign="Left" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position4}" width="7rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position4}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="7rem" hAlign="Center" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"
+						mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position5}" width="7rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position5}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="7rem" hAlign="Begin" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block" mergeDuplicates="false">
+						<header>
+							<Text text="" width="7rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true" tooltip="{i18n>position6}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="9rem" hAlign="Center" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"
+						mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position7}" width="9rem" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position6}"/>
+						</header>
+						<footer/>
+					</Column>
+					<Column width="auto" hAlign="Center" vAlign="Inherit" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Block"
+						mergeDuplicates="false">
+						<header>
+							<Text text="{i18n>position6}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"
+								tooltip="{i18n>position6}"/>
+						</header>
+						<footer/>
+					</Column>
+				</columns>
+				<items>
+					<ColumnListItem type="Navigation">
+						<cells>
+							<ObjectIdentifier text="{path:'item_no', formatter:'.removeZeroBefore'}" titleActive="false" visible="true"/>
+							<ObjectIdentifier title="{path:'material'}" titleActive="false" visible="true"/>
+							<Text text="{description}" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+							<!--<Text text="{description}" width="auto" maxLines="2" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+							<ObjectNumber number="{path:'quantity'}" unit="{uom}" emphasized="true" textAlign="End"/>
+							<ObjectNumber number="{path:'unit_price', formatter:'.applicaSeparatore'}" unit="{currency}" emphasized="true" textAlign="End"/>
+							<ObjectNumber number="{i18n>textfor} {path: 'unita_prz'} {path: 'uom_prz'}" emphasized="false" textAlign="Begin"/>
+							<ObjectNumber number="{path:'valid_contr'}" visible="true"/>
+							<ObjectNumber number="{path:'price_val', formatter:'.applicaSeparatore'}" unit="{currency}" emphasized="true" textAlign="End"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</content>
+		<footer>
+			<OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+				<content>
+					<ToolbarSpacer width=""/>
+					<Button text="{i18n>button1}" type="Accept" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"
+						press="_onButtonPress"/>
+					<!--<Button text="{i18n>button2}" type="Reject" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress1"/>-->
+				</content>
+			</OverflowToolbar>
+		</footer>
+		<headerContent/>
+		<subHeader/>
+		<customHeader/>
+	</Page>
+</mvc:View>

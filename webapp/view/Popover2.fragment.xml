@@ -1,0 +1,90 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" 
+controllerName="sap.com.bedigix.approvectrfe.controller.Popover2" 
+xmlns="sap.m" 
+xmlns:form="sap.ui.layout.form">
+    <Popover bounce="false" contentHeight="auto" contentWidth="auto" horizontalScrolling="true" modal="false" offsetX="0" offsetY="0" placement="Right" showHeader="true" title="Gruppo Acquisti" verticalScrolling="true" visible="true">
+        <content>
+            <ObjectHeader intro="" title="{CreatedByName}" icon="sap-icon://person-placeholder" number="" numberUnit="" numberState="None" titleActive="false" backgroundDesign="Transparent" condensed="false" visible="true">
+                <attributes/>
+                <statuses/>
+                <markers/>
+            </ObjectHeader>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:title>
+                    <core:Title text="Contatti" level="Auto"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                    <!--        <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Mobile" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Link text="+1 (302) 3456-567" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false"/>
+                                </form:fields>
+                            </form:FormElement>
+                            -->
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Telefono" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Link text="+1 (302) 3456-567" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Email" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Link text="Ma.Dre@serty.com" textAlign="Begin" width="auto" target="_blank" wrapping="false" enabled="true" visible="true" emphasized="false" subtle="false"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+            <form:Form width="100%" editable="true" visible="true">
+                <form:title>
+                    <core:Title text="Società" level="Auto"/>
+                </form:title>
+                <form:formContainers>
+                    <form:FormContainer visible="true">
+                        <form:formElements>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Nome " design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="Parmalat S.p.a." textAlign="Begin" width="auto"  wrapping="true"  maxLines="3" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                            <form:FormElement visible="true">
+                                <form:label>
+                                    <Label text="Indirizzo " design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:label>
+                                <form:fields>
+                                    <Text text="VIA GENOVA 43044 COLLECCHIO (PR)" width="250px" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </form:fields>
+                            </form:FormElement>
+                        </form:formElements>
+                        <form:title/>
+                    </form:FormContainer>
+                </form:formContainers>
+                <form:layout>
+                    <form:ResponsiveGridLayout adjustLabelSpan="false" columnsL="2" labelSpanL="3" columnsM="1" labelSpanM="2" labelSpanS="12"/>
+                </form:layout>
+            </form:Form>
+        </content>
+        <beginButton/>
+        <customHeader/>
+        <endButton/>
+        <footer/>
+        <subHeader/>
+    </Popover>
+</core:FragmentDefinition>

@@ -1,7 +1,17 @@
 <mvc:View controllerName="sap.com.bedigix.approvectrfe.controller.App"
-    displayBlock="true"
-    xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
-    <App id="app">
-    </App>
+xmlns:mvc="sap.ui.core.mvc"
+displayBlock="true"
+busy="{appView>/busy}"
+busyIndicatorDelay="{appView>/delay}"
+xmlns="sap.m">
+<!--	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<content></content>
+				</Page>
+			</pages>
+		</App>
+	</Shell> -->
+	<SplitApp id="idAppControl" />
 </mvc:View>

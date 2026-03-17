@@ -1,0 +1,33 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="sap.com.bedigix.approvectrfe.controller.purchase_orders" xmlns="sap.m">
+	<Page showHeader="true" title="{i18n>titleSearch} ({/lengthListaCo})" titleAlignment="Center" showFooter="true">
+		<content>
+			<List id="sap_m_List_3" mode="SingleSelectMaster" width="100%" headerText="Header" footerText="" backgroundDesign="Solid"
+				showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true" itemPress="_onObjectListItemPress"
+				items="{path:'/elencoListaCo', templateShareable:true}">
+				<headerToolbar>
+					<Toolbar enabled="true" visible="true" width="" design="Solid">
+						<content>
+							<SearchField placeholder="{i18n>search}" showSearchButton="true" visible="true" width="100%" liveChange="_onSearchFieldLiveChange"/>
+						</content>
+					</Toolbar>
+				</headerToolbar>
+				<items>
+					<ObjectListItem title="{vendor_name}" number="{path:'doc_value', formatter:'.applicaSeparatore'}" numberUnit="{currency}" numberState="None"
+						type="Active" selected="false">
+						<!--<firstStatus>
+								<ObjectStatus
+									text="{i18n>list2}{start_date} {i18n>list3}{end_date}" />
+							</firstStatus>-->
+						<attributes>
+							<ObjectAttribute text="{doc_num}" active="false" visible="true"/>
+							<ObjectAttribute text="{i18n>Elab}" active="false" visible="{= ${in_elab} === 'X'}"/>
+							<ObjectAttribute text="{purch_grp}" active="false" visible="true"/>
+							<ObjectAttribute text="{soc_desc}" active="false" visible="true"/>
+							<ObjectAttribute text="{i18n>num_atta}{num_atta}" active="false" visible="true"/>
+						</attributes>
+					</ObjectListItem>
+				</items>
+			</List>
+		</content>
+	</Page>
+</mvc:View>
