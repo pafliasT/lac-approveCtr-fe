@@ -154,7 +154,7 @@ sap.ui.define([
 			var lingua = sap.ui.getCore().getConfiguration().getLanguage();
 			//sap.ui.core.BusyIndicator.show(0);
 			jQuery.ajax({
-				url: "/backend/zpur_getitem_co?user_email=" + user + "&doc_num=" + doc.doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+				url: "backend/zpur_getitem_co?user_email=" + user + "&doc_num=" + doc.doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 					"&item_no=" + item_no,
 				cache: false,
 				async: false,
@@ -255,7 +255,7 @@ sap.ui.define([
 			var lingua = sap.ui.getCore().getConfiguration().getLanguage();
 			var user = sap.ui.getCore().AppContext.mainModel.getProperty("/currentUser");
 			jQuery.ajax({
-				url: "/backend/zpur_release_Co?user_email=" + user + "&doc_num=" + doc.doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase(),
+				url: "backend/zpur_release_Co?user_email=" + user + "&doc_num=" + doc.doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase(),
 				cache: false,
 				async: false,
 				type: 'GET',

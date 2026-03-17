@@ -209,7 +209,7 @@ sap.ui.define([
 					var item_a = '';
 					// Richiamo una sola volta il BackEnd
 					jQuery.ajax({
-						url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+						url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 							"&item_da=" + item_da + "&item_a=" + item_a,
 						cache: false,
 						async: false,
@@ -286,7 +286,7 @@ sap.ui.define([
 						if (i === 0) {
 							jQuery.ajax({
 								type: 'GET',
-								url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+								url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 									"&item_da=" + i + "&item_a=" + (conteggio + 1),
 								cache: false,
 								async: false,
@@ -359,7 +359,7 @@ sap.ui.define([
 						} else {
 							jQuery.ajax({
 								type: 'GET',
-								url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+								url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 									"&item_da=" + (i * conteggio) + "&item_a=" + (conteggio + 1),
 								cache: false,
 								async: false,
@@ -451,7 +451,7 @@ sap.ui.define([
 			oModel.setProperty("/lunghezza", 0, true);
 			jQuery.ajax({
 				type: "GET",
-				url: "/backend/zpur_getatta_co?user_email=" + email + "&doc_num=" + docNum,
+				url: "backend/zpur_getatta_co?user_email=" + email + "&doc_num=" + docNum,
 				headers: {
 					"content-type": "application/json",
 					"Accept": "application/json"
@@ -567,7 +567,7 @@ sap.ui.define([
 			var fileURL = "";
 			jQuery.ajax({
 				type: "GET",
-				url: "/backend/zpur_dwnatta_co?user_email=" + email + "&doc_num=" + docNum + "&atta_id=" + atta_id,
+				url: "backend/zpur_dwnatta_co?user_email=" + email + "&doc_num=" + docNum + "&atta_id=" + atta_id,
 				headers: {
 					"content-type": "application/json",
 					"Accept": "application/json"

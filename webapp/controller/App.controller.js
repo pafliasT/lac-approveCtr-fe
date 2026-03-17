@@ -11,7 +11,7 @@ sap.ui.define([
 			var oViewModel,
 				oListSelector = this.getOwnerComponent().oListSelector,
 				iOriginalBusyDelay = this.getView().getBusyIndicatorDelay();
-				
+
 			oViewModel = new JSONModel({
 				busy: true,
 				delay: 0
@@ -62,25 +62,25 @@ sap.ui.define([
 				});
 			}.bind(this));
 		},
-		
+
 		setMode: function (sMode) {
 			this.byId("idAppControl").setMode(sMode);
 		},
-		
+
 		setWS31: function () {
 			this.showBusyDialog();
 			var currentUser = "";
 			$.when(
 				jQuery.ajax({
-					url: "/current/getUser",
+					url: "user-api/currentUser",
 					cache: false,
 					async: false,
 					type: 'GET',
-					contentType: "text/plain",
-					dataType: 'text',
+					contentType: "application/json",
+					dataType: 'json',
 					success: function (data) {
 						//console.log(data);
-						currentUser = data;
+						currentUser = data.email;
 						sap.ui.getCore().AppContext.mainModel.setProperty("/currentUser", currentUser, true);
 					},
 					error: function (oDataE) {
@@ -89,7 +89,7 @@ sap.ui.define([
 				})
 			).then(function () {
 				jQuery.ajax({
-					url: "/backend/zpur_getlist_co?user_email=" + currentUser,
+					url: "backend/zpur_getlist_co?user_email=" + currentUser,
 					cache: false,
 					async: false,
 					type: 'GET',
@@ -127,7 +127,7 @@ sap.ui.define([
 			});
 			this.hideBusyDialog();
 		},
-		
+
 		FirstRecord: function (pathFirst) {
 			var parametroDoc = sap.ui.getCore().AppContext.mainModel.getProperty(pathFirst);
 			var user = sap.ui.getCore().AppContext.mainModel.getProperty("/currentUser");
@@ -191,12 +191,12 @@ sap.ui.define([
 						// No Authorization Profile
 						MessageBox.warning(this.getResourceBundle().getText("noAuthProfile"));
 					} else
-					// No items in the list
+						// No items in the list
 						MessageBox.warning(this.getResourceBundle().getText("noItemsFound"));
 				}
 			}
 		},
-		
+
 		WS32: function (doc_num, user, tot_item, elab) {
 			that = this;
 			var lingua = sap.ui.getCore().getConfiguration().getLanguage();
@@ -212,7 +212,7 @@ sap.ui.define([
 					var item_a = '';
 					// Richiamo una sola volta il BackEnd
 					jQuery.ajax({
-						url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+						url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 							"&item_da=" + item_da + "&item_a=" + item_a,
 						cache: false,
 						async: false,
@@ -282,7 +282,7 @@ sap.ui.define([
 						if (i == 0) {
 							jQuery.ajax({
 								type: 'GET',
-								url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+								url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 									"&item_da=" + i + "&item_a=" + (conteggio + 1),
 								cache: false,
 								async: false,
@@ -349,7 +349,7 @@ sap.ui.define([
 						} else {
 							jQuery.ajax({
 								type: 'GET',
-								url: "/backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
+								url: "backend/zpur_gethead_co?user_email=" + user + "&doc_num=" + doc_num + "&language=" + lingua.substring(1, 0).toLocaleUpperCase() +
 									"&item_da=" + (i * conteggio) + "&item_a=" + (conteggio + 1),
 								cache: false,
 								async: false,
@@ -423,7 +423,7 @@ sap.ui.define([
 				}
 			}
 		},
-		
+
 		/* >>> U068 - Allegati */
 		getAllegati: function (docNum, email) {
 			that = this;
@@ -433,7 +433,7 @@ sap.ui.define([
 			oModel.setProperty("/lunghezza", 0, true);
 			jQuery.ajax({
 				type: "GET",
-				url: "/backend/zpur_getatta_co?user_email=" + email + "&doc_num=" + docNum,
+				url: "backend/zpur_getatta_co?user_email=" + email + "&doc_num=" + docNum,
 				headers: {
 					"content-type": "application/json",
 					"Accept": "application/json"
@@ -462,7 +462,7 @@ sap.ui.define([
 						for (var i = 0; i < data.length; i++) {
 							var filename = data[i].filename;
 							var chunks = filename.split(".");
-							var estensione = chunks[chunks.length-1];
+							var estensione = chunks[chunks.length - 1];
 							var mimeType = that.getMimeType(estensione);
 							var urlFile = that.contenutoAllegati(data[i].doc_id, mimeType);
 							items.push({
@@ -476,14 +476,14 @@ sap.ui.define([
 								"url": urlFile,
 								"uploadState": "Complete",
 								"attributes": [{
-								// 	"title": "Tipo Documento",
-								// 	"text": data[i].obj_type,
-								// 	"active": true
-								// }, {
-								// 	"title": "Descrizione Documento",
-								// 	"text": data[i].obj_descr,
-								// 	"active": true
-								// }, {
+									// 	"title": "Tipo Documento",
+									// 	"text": data[i].obj_type,
+									// 	"active": true
+									// }, {
+									// 	"title": "Descrizione Documento",
+									// 	"text": data[i].obj_descr,
+									// 	"active": true
+									// }, {
 									"title": "Data Creazione",
 									"text": data[i].creat_date,
 									"active": true
@@ -549,7 +549,7 @@ sap.ui.define([
 			var fileURL = "";
 			jQuery.ajax({
 				type: "GET",
-				url: "/backend/zpur_dwnatta_co?user_email=" + email + "&doc_num=" + docNum + "&atta_id=" + atta_id,
+				url: "backend/zpur_dwnatta_co?user_email=" + email + "&doc_num=" + docNum + "&atta_id=" + atta_id,
 				headers: {
 					"content-type": "application/json",
 					"Accept": "application/json"
@@ -587,6 +587,6 @@ sap.ui.define([
 			return fileURL;
 		}
 		/* <<< U068 - Allegati */
-		
+
 	});
 });
